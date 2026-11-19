@@ -28,7 +28,7 @@
 }
 *{box-sizing:border-box}
 html,body{margin:0}
-body{background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+body{background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;overflow-wrap:anywhere}
 header{background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
 .wrap{max-width:1040px;margin:0 auto;padding:0 16px}
 .top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0 6px}
@@ -52,51 +52,87 @@ textarea{min-height:64px;resize:vertical}
 :root[data-theme="dark"] .btn.primary{color:#0d1a17}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .btn.primary{color:#0d1a17}}
 .btn.ghost{border-color:transparent;background:none;color:var(--muted)}
+.btn.small{padding:4px 10px;font-size:.85rem}
+.btn[disabled]{opacity:.5;cursor:default}
 .row{display:grid;gap:10px;grid-template-columns:1fr 1fr auto;align-items:end;margin-bottom:10px}
 .tools{display:flex;flex-wrap:wrap;gap:8px}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
 .chip{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:6px 12px;font:inherit;font-size:.9rem;cursor:pointer}
 .chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+:root[data-theme="dark"] .chip[aria-pressed="true"]{color:#0d1a17}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .chip[aria-pressed="true"]{color:#0d1a17}}
 .pillar{border-top:1px solid var(--line);padding:14px 0}
 .pillar:first-of-type{border-top:0;padding-top:4px}
 .ptitle{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap}
 .q{color:var(--muted);font-size:.9rem;margin:2px 0 8px}
-.scale{display:flex;gap:6px;margin-bottom:6px}
-.scale button{width:44px;height:40px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:inherit;font-weight:600;cursor:pointer}
-.scale button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.scale{display:flex;gap:6px;margin-bottom:6px;align-items:center;flex-wrap:wrap}
+.scale button.n{width:44px;height:40px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:inherit;font-weight:600;cursor:pointer}
+.scale button.n[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+:root[data-theme="dark"] .scale button.n[aria-pressed="true"]{color:#0d1a17}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .scale button.n[aria-pressed="true"]{color:#0d1a17}}
+.scale.cal button.n[aria-pressed="true"]{background:var(--warn);border-color:var(--warn)}
 .anchor{font-size:.85rem;background:var(--accent-soft);border-radius:8px;padding:6px 10px;margin-bottom:8px}
+.hint{font-size:.82rem;color:var(--muted);margin:0 0 8px}
+.hint ul{margin:2px 0 0;padding-left:18px}
 .tag{display:inline-block;font-size:.75rem;border-radius:999px;padding:2px 8px;background:var(--line);color:var(--ink)}
 .tag.filter{background:var(--warn-soft);color:var(--warn)}
+.chg{color:var(--warn);font-weight:600}
 table{width:100%;border-collapse:collapse;font-size:.92rem}
 th,td{padding:8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
 th{color:var(--muted);font-weight:600;font-size:.82rem}
 td.num{font-variant-numeric:tabular-nums;text-align:center}
 .tbl{overflow-x:auto}
+.tbl table{min-width:560px}
 .ok{color:var(--good);font-weight:600}.no{color:var(--bad);font-weight:600}
-.nine{display:grid;grid-template-columns:28px repeat(3,1fr);grid-template-rows:repeat(3,minmax(96px,auto)) 28px;gap:6px}
-.box{border-radius:10px;padding:8px;font-size:.82rem;border:1px solid var(--line)}
+.nine{display:grid;grid-template-columns:28px repeat(3,minmax(0,1fr));grid-template-rows:repeat(3,minmax(96px,auto)) 28px;gap:6px}
+.box{border-radius:10px;padding:8px;font:inherit;font-size:.82rem;border:1px solid var(--line);color:var(--ink);text-align:left;display:block;min-width:0}
+button.box{cursor:pointer}
+button.box[aria-pressed="true"]{outline:3px solid var(--accent);outline-offset:0}
 .box b{display:block;font-size:.78rem;color:var(--muted);font-weight:600;margin-bottom:4px}
 .box .n{display:inline-block;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:2px 8px;margin:2px 2px 0 0;font-size:.82rem}
-.ax{color:var(--muted);font-size:.75rem;display:flex;align-items:center;justify-content:center}
+.ax{color:var(--muted);font-size:.75rem;display:flex;align-items:center;justify-content:center;text-align:center}
 .ax.y{writing-mode:vertical-rl;transform:rotate(180deg)}
 .c1{background:var(--b1)}.c2{background:var(--b2)}.c3{background:var(--b3)}
 .note{font-size:.88rem;color:var(--muted)}
 .alert{background:var(--warn-soft);color:var(--warn);border-radius:8px;padding:8px 12px;font-size:.9rem;margin-bottom:12px}
+.info{background:var(--accent-soft);border-radius:8px;padding:10px 12px;font-size:.92rem;margin-top:12px}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 ol li,ul li{margin-bottom:6px}
 .saved{font-size:.8rem;color:var(--muted)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.item{display:flex;gap:8px;align-items:flex-start;margin-bottom:6px;font-size:.92rem}
+.item input{margin-top:5px;flex:none}
+.item span{flex:1}
+.item.done span{text-decoration:line-through;color:var(--muted)}
+.sug{display:block;width:100%;text-align:left;margin-bottom:6px;border:1px dashed var(--line);background:var(--bg);color:var(--ink);border-radius:8px;padding:6px 10px;font:inherit;font-size:.85rem;cursor:pointer}
+.sug[disabled]{opacity:.5;cursor:default}
+.qa{border-top:1px solid var(--line);padding:12px 0}
+.qa:first-of-type{border-top:0}
+details{margin-bottom:8px}
+summary{cursor:pointer;font-weight:600}
+.rel{display:none}
 @media (max-width:640px){
   .row{grid-template-columns:1fr 1fr}
   .row .btn{grid-column:1/-1}
-  .grid2{grid-template-columns:1fr}
-  .nine{grid-template-rows:repeat(3,minmax(80px,auto)) 28px}
+  .grid2,.grid3{grid-template-columns:1fr}
+  .nine{grid-template-rows:repeat(3,minmax(80px,auto)) 28px;gap:4px}
+  .box{padding:6px;font-size:.78rem}
 }
 @media print{
-  header nav,.tools,.noprint{display:none!important}
-  header{position:static}
-  section[hidden]{display:block!important}
-  body{background:#fff;color:#000}
-  .card{break-inside:avoid;border-color:#ccc}
+  header,main{display:none!important}
+  .rel{display:block}
+  body{background:#fff;color:#000;font-size:11pt}
+  .rel h1{font-size:1.4rem}
+  .rel h2{font-size:1.1rem;margin:18px 0 6px;break-after:avoid}
+  .rel h3{break-after:avoid}
+  .rel .pg{break-before:page}
+  .rel .lid{break-inside:avoid;border:1px solid #bbb;border-radius:6px;padding:8px 10px;margin-bottom:10px}
+  .rel table{font-size:9pt;min-width:0}
+  .rel tr,.rel .box{break-inside:avoid}
+  .rel .nine{grid-template-rows:repeat(3,minmax(70px,auto)) 24px}
+  .rel .box{border-color:#999;color:#000}
+  .tbl{overflow:visible}
 }
 </style>
 </head>
@@ -108,21 +144,24 @@ ol li,ul li{margin-bottom:6px}
         <h1>Matriz de Sucessão</h1>
         <div class="sub">Avalie seus líderes e prepare um sucessor · os dados ficam só neste navegador</div>
       </div>
-      <span class="saved" id="saved" aria-live="polite"></span>
+      <span class="saved" id="saved" role="status" aria-live="polite"></span>
     </div>
-    <nav role="tablist" aria-label="Etapas">
-      <button role="tab" data-tab="time" aria-selected="true">1. Time</button>
-      <button role="tab" data-tab="avaliar">2. Avaliar</button>
-      <button role="tab" data-tab="resultado">3. Resultado e 9-box</button>
-      <button role="tab" data-tab="plano">4. Plano do sucessor</button>
-      <button role="tab" data-tab="ajuda">Como usar</button>
+    <nav role="tablist" aria-label="Etapas" id="tabs">
+      <button role="tab" id="tab-time" aria-controls="time" data-tab="time" aria-selected="true">1. Time</button>
+      <button role="tab" id="tab-avaliar" aria-controls="avaliar" data-tab="avaliar" aria-selected="false">2. Avaliar</button>
+      <button role="tab" id="tab-conversas" aria-controls="conversas" data-tab="conversas" aria-selected="false">3. Conversas</button>
+      <button role="tab" id="tab-resultado" aria-controls="resultado" data-tab="resultado" aria-selected="false">4. Resultado e 9-box</button>
+      <button role="tab" id="tab-pdi" aria-controls="pdi" data-tab="pdi" aria-selected="false">5. PDI</button>
+      <button role="tab" id="tab-sucessor" aria-controls="sucessor" data-tab="sucessor" aria-selected="false">6. Sucessor</button>
+      <button role="tab" id="tab-ciclos" aria-controls="ciclos" data-tab="ciclos" aria-selected="false">7. Ciclos</button>
+      <button role="tab" id="tab-ajuda" aria-controls="ajuda" data-tab="ajuda" aria-selected="false">Como usar</button>
     </nav>
   </div>
 </header>
 
 <main class="wrap">
 
-<section id="time">
+<section id="time" role="tabpanel" aria-labelledby="tab-time">
   <h2>Seu time de líderes</h2>
   <p class="lead">Cadastre quem será avaliado. Use só o primeiro nome se preferir.</p>
   <div class="card" id="leaders"></div>
@@ -135,35 +174,56 @@ ol li,ul li{margin-bottom:6px}
     <p class="note">Os dados são salvos automaticamente neste navegador. Para usar em outro computador, exporte o arquivo e importe lá. Ninguém além de você vê esses dados: a página não envia nada para a internet.</p>
     <div class="tools">
       <button class="btn" id="exportJson">Exportar arquivo (.json)</button>
-      <label class="btn" style="margin:0;color:var(--ink)">Importar arquivo<input type="file" id="importJson" accept=".json,application/json" hidden></label>
+      <label class="btn" style="margin:0;color:var(--ink)" for="importJson">Importar arquivo</label>
+      <input type="file" id="importJson" accept=".json,application/json" class="sr" aria-label="Importar arquivo .json">
       <button class="btn" id="exportCsv">Exportar planilha (.csv)</button>
-      <button class="btn" onclick="window.print()">Imprimir ou salvar PDF</button>
+      <button class="btn" id="printRel">Imprimir relatório da calibração</button>
       <button class="btn ghost" id="reset">Apagar tudo</button>
     </div>
   </div>
 </section>
 
-<section id="avaliar" hidden>
+<section id="avaliar" role="tabpanel" aria-labelledby="tab-avaliar" hidden>
   <h2>Avaliação por pilar</h2>
-  <p class="lead">Escolha o líder, dê uma nota de 1 a 5 em cada pilar e escreva <b>uma evidência concreta</b>: um fato, uma entrega, uma situação. Sem evidência, a nota é só impressão.</p>
+  <p class="lead">Escolha o líder, dê uma nota de 1 a 5 em cada pilar e escreva <b>uma evidência concreta</b>: um fato, uma entrega, uma situação. Sem evidência, a nota é só impressão. A <b>nota calibrada</b> é opcional: use depois de combinar com seu superior e o RH.</p>
   <div class="chips" id="pick" role="group" aria-label="Líder avaliado"></div>
   <div class="card" id="form"></div>
 </section>
 
-<section id="resultado" hidden>
+<section id="conversas" role="tabpanel" aria-labelledby="tab-conversas" hidden>
+  <h2>Conversa de carreira</h2>
+  <p class="lead">Faça as perguntas num 1:1 e anote as respostas. Elas ajudam a medir a vontade de assumir e a montar o PDI.</p>
+  <div class="chips" id="pickConv" role="group" aria-label="Líder da conversa"></div>
+  <div class="card" id="conv"></div>
+</section>
+
+<section id="resultado" role="tabpanel" aria-labelledby="tab-resultado" hidden>
   <h2>Resultado</h2>
-  <p class="lead"><b>Desempenho</b> = média de Resultado e Liderança. <b>Potencial</b> = média de Aprendizado, Visão do todo e Relacionamento. Integridade e Vontade funcionam como <b>filtros</b>.</p>
+  <p class="lead"><b>Desempenho</b> = média de Resultado e Liderança. <b>Potencial</b> = média de Aprendizado, Visão do todo e Relacionamento. Integridade e Vontade funcionam como <b>filtros</b>. Os cálculos usam a nota calibrada quando ela existe.</p>
+  <div class="chips" id="filtros" role="group" aria-label="Filtrar líderes"></div>
   <div class="card tbl" id="table"></div>
   <div class="card">
     <h3>9-box: desempenho × potencial</h3>
-    <p class="note">Baixo: até 2,4 · Médio: 2,5 a 3,9 · Alto: 4,0 ou mais. Candidatos naturais à sucessão ficam no canto superior direito.</p>
+    <p class="note">Baixo: até 2,4 · Médio: 2,5 a 3,9 · Alto: 4,0 ou mais. Toque num quadrante para ver o que fazer com quem está ali.</p>
     <div class="nine" id="nine"></div>
+    <div id="pendNote"></div>
+    <div class="info" id="boxInfo" aria-live="polite">Toque em um quadrante.</div>
   </div>
+  <div class="card" id="mudancas"></div>
+  <div class="card" id="prepCal"></div>
+  <div class="tools"><button class="btn" id="printRel2">Imprimir relatório da calibração</button></div>
 </section>
 
-<section id="plano" hidden>
+<section id="pdi" role="tabpanel" aria-labelledby="tab-pdi" hidden>
+  <h2>PDI de cada líder</h2>
+  <p class="lead">Plano de desenvolvimento no modelo 70-20-10: 70% prática no trabalho, 20% convivência e exposição, 10% formação. Pilares com nota 3 ou menos trazem sugestões.</p>
+  <div class="chips" id="pickPdi" role="group" aria-label="Líder do PDI"></div>
+  <div id="pdiBody"></div>
+</section>
+
+<section id="sucessor" role="tabpanel" aria-labelledby="tab-sucessor" hidden>
   <h2>Plano do sucessor</h2>
-  <p class="lead">Escolha um sucessor principal e uma reserva. Depois monte o plano de desenvolvimento no modelo 70-20-10.</p>
+  <p class="lead">Escolha um sucessor principal e uma reserva. Depois defina os marcos e as anotações. As ações do 70-20-10 de cada líder ficam na aba PDI.</p>
   <div class="card grid2">
     <div><label for="succ">Sucessor principal</label><select id="succ"></select></div>
     <div><label for="backup">Reserva</label><select id="backup"></select></div>
@@ -171,18 +231,15 @@ ol li,ul li{margin-bottom:6px}
   <div id="succAlert"></div>
   <div class="card">
     <h3>70% · Prática no trabalho</h3>
-    <p class="note">Ideias: substituir você nas férias e ausências; conduzir a reunião semanal da área; liderar um projeto de ponta a ponta; assumir por um período uma célula diferente da sua; montar o orçamento ou o fluxo de caixa de um mês.</p>
-    <textarea id="p70" placeholder="Ações, com prazo"></textarea>
+    <textarea id="p70" aria-label="Ações de prática no trabalho" placeholder="Ações, com prazo"></textarea>
   </div>
   <div class="card">
     <h3>20% · Convivência e exposição</h3>
-    <p class="note">Ideias: participar com você das reuniões com a superintendência e outras áreas; apresentar resultados da área; mentoria quinzenal; 1:1 com foco em carreira; contato com bancos e parceiros.</p>
-    <textarea id="p20" placeholder="Ações, com prazo"></textarea>
+    <textarea id="p20" aria-label="Ações de convivência e exposição" placeholder="Ações, com prazo"></textarea>
   </div>
   <div class="card">
     <h3>10% · Formação</h3>
-    <p class="note">Ideias: curso de finanças corporativas ou gestão de riscos; liderança de líderes; negociação; leitura com discussão nos 1:1.</p>
-    <textarea id="p10" placeholder="Cursos e leituras, com prazo"></textarea>
+    <textarea id="p10" aria-label="Cursos e leituras" placeholder="Cursos e leituras, com prazo"></textarea>
   </div>
   <div class="card grid2">
     <div><label for="m90">Marco de 90 dias</label><textarea id="m90" placeholder="O que ele já deve fazer sozinho"></textarea></div>
@@ -192,223 +249,586 @@ ol li,ul li{margin-bottom:6px}
   </div>
   <div class="card">
     <h3>Anotações</h3>
-    <textarea id="notes" placeholder="Calibração com o superior e o RH, conversas de carreira, ajustes"></textarea>
+    <textarea id="notes" aria-label="Anotações" placeholder="Calibração com o superior e o RH, conversas de carreira, ajustes"></textarea>
   </div>
+  <div class="tools"><button class="btn" id="goPdi">Abrir o PDI do sucessor</button></div>
 </section>
 
-<section id="ajuda" hidden>
+<section id="ciclos" role="tabpanel" aria-labelledby="tab-ciclos" hidden>
+  <h2>Ciclos</h2>
+  <p class="lead">Ao fechar um ciclo, a ferramenta guarda um retrato do momento: notas, desempenho, potencial e prontidão de cada líder. Assim você vê a evolução ao longo do tempo.</p>
+  <div class="card">
+    <div class="grid2">
+      <div><label for="cicloData">Data do ciclo</label><input type="date" id="cicloData"></div>
+      <div><label for="cicloNome">Nome do ciclo (opcional)</label><input type="text" id="cicloNome" placeholder="Ex.: 1º semestre"></div>
+    </div>
+    <div class="tools" style="margin-top:12px"><button class="btn primary" id="fechar">Fechar ciclo</button></div>
+  </div>
+  <div class="card" id="ciclosLista"></div>
+  <div class="card tbl" id="evolucao"></div>
+</section>
+
+<section id="ajuda" role="tabpanel" aria-labelledby="tab-ajuda" hidden>
   <h2>Como usar</h2>
-  <div class="card">
-    <ol>
-      <li><b>Cadastre o time</b> na aba 1, com o nome e a área de cada líder.</li>
-      <li><b>Avalie um líder por vez</b> na aba 2. Pense nos últimos 12 a 24 meses, não só no último mês. Use a descrição de cada nota como régua.</li>
-      <li><b>Registre uma evidência por pilar.</b> Ela é o que sustenta a nota na calibração.</li>
-      <li><b>Não confunda a pergunta:</b> avalie o que o cargo de gestor vai exigir, e não o quanto a pessoa é boa no cargo atual.</li>
-      <li><b>Confira o resultado</b> na aba 3. Quem não passa nos filtros fica fora da sucessão principal, mas continua com plano de desenvolvimento.</li>
-      <li><b>Calibre com seu superior e o RH</b> antes de decidir. Leve a planilha exportada ou o PDF.</li>
-      <li><b>Escolha principal e reserva</b> e monte o plano 70-20-10 na aba 4.</li>
-      <li><b>Revise a cada trimestre.</b> Atualize as notas e os marcos.</li>
-    </ol>
-  </div>
-  <div class="card">
-    <h3>Cuidados</h3>
-    <ul>
-      <li><b>Viés de semelhança:</b> evite escolher quem se parece com você. O cargo vai mudar.</li>
-      <li><b>Viés de recência:</b> um mês brilhante ou ruim não define 2 anos.</li>
-      <li><b>Efeito halo:</b> ser o melhor técnico não garante ser o melhor líder.</li>
-      <li><b>Sigilo:</b> não anuncie o sucessor cedo. Desenvolva todos e dê exposição aos poucos.</li>
-      <li><b>Pergunte a vontade:</b> o pilar Vontade se mede numa conversa de carreira, não por suposição.</li>
-    </ul>
-  </div>
+  <div class="card" id="ajudaPassos"></div>
+  <div class="card" id="ajudaVieses"></div>
   <div class="card">
     <h3>Privacidade</h3>
-    <p class="note">Esta página não tem servidor nem banco de dados. Tudo o que você digita fica salvo só neste navegador, neste computador. Se limpar os dados do navegador, as informações somem. Por isso, exporte o arquivo .json de tempos em tempos.</p>
+    <p class="note" id="ajudaPriv"></p>
   </div>
 </section>
 
 </main>
 
+<div class="rel" id="rel"></div>
+
+<script src="conteudo.js"></script>
+<script>
+/* Lógica pura, sem DOM. Exposta em window.MS para testes. */
+(function(){
+"use strict";
+var ESTR = [
+  {id:"p1", grupo:"des"}, {id:"p2", grupo:"pot"}, {id:"p3", grupo:"des"}, {id:"p4", grupo:"pot"},
+  {id:"p5", grupo:"pot"}, {id:"p6", grupo:"filtro", minimo:4}, {id:"p7", grupo:"filtro", minimo:3}
+];
+var IDS = ESTR.map(function(p){ return p.id; });
+var DES = ["p1","p3"], POT = ["p2","p4","p5"];
+var KEY = "matriz-sucessao-v2", KEY_V1 = "matriz-sucessao-v1";
+var PLAN_TXT = ["p70","p20","p10","m90","m180","m365","next","notes"];
+
+function uid(){ return Math.random().toString(36).slice(2,9) + Date.now().toString(36).slice(-3); }
+function esc(s){ return String(s==null?"":s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+function nomeado(l){ return !!(l && typeof l.name === "string" && l.name.trim()); }
+function rotulo(l){ return (l && l.name && l.name.trim()) || "(sem nome)"; }
+function fmt(x){ return x==null ? "–" : x.toFixed(1).replace(".",","); }
+
+/* nota efetiva = calibrada ?? gestor */
+function nota(l, id){
+  var c = l && l.c ? l.c[id] : null, g = l && l.s ? l.s[id] : null;
+  if(c != null) return c;
+  return g != null ? g : null;
+}
+function media(l, ids){
+  var v = ids.map(function(i){ return nota(l,i); }).filter(function(x){ return x != null; });
+  if(v.length !== ids.length) return null;
+  return v.reduce(function(a,b){ return a+b; }, 0) / v.length;
+}
+function des(l){ return media(l, DES); }
+function pot(l){ return media(l, POT); }
+function faixa(x){ return x==null ? null : (x >= 4 ? 2 : x >= 2.5 ? 1 : 0); }
+function passa(l){
+  var res = [], falta = false;
+  ESTR.forEach(function(p){
+    if(p.grupo !== "filtro") return;
+    var n = nota(l, p.id);
+    if(n == null) falta = true; else res.push(n >= p.minimo);
+  });
+  if(res.indexOf(false) >= 0) return false;
+  return falta ? null : true;
+}
+function mudancas(l){
+  var r = [];
+  IDS.forEach(function(id){
+    var c = l.c ? l.c[id] : null, g = l.s ? l.s[id] : null;
+    if(c != null && c !== g) r.push({id:id, de:g != null ? g : null, para:c});
+  });
+  return r;
+}
+function linhas(st){
+  return st.leaders.filter(nomeado).map(function(l){
+    var d = des(l), p = pot(l);
+    return {l:l, d:d, p:p, ok:passa(l), fd:faixa(d), fp:faixa(p)};
+  }).sort(function(a,b){ return ((b.d||0)+(b.p||0)) - ((a.d||0)+(a.p||0)); });
+}
+function filtrar(rows, modo){
+  if(modo === "passam") return rows.filter(function(r){ return r.ok === true; });
+  if(modo === "naopassam") return rows.filter(function(r){ return r.ok === false; });
+  if(modo === "incompletos") return rows.filter(function(r){ return r.d == null || r.p == null || r.ok == null; });
+  return rows;
+}
+function sugestoes(l, C){
+  var out = [];
+  ((C && C.pilares) || []).forEach(function(p){
+    var n = nota(l, p.id);
+    if(n != null && n <= 3 && p.acoes) out.push({id:p.id, nome:p.nome, nota:n, acoes:p.acoes});
+  });
+  return out;
+}
+function snapshot(st, data, nome){
+  return {id:uid(), data:data, rotulo:nome||"", leaders: st.leaders.filter(nomeado).map(function(l){
+    var s = {}; IDS.forEach(function(id){ var n = nota(l,id); if(n != null) s[id] = n; });
+    var v = {s:s};
+    return {id:l.id, name:l.name.trim(), s:s, des:media(v,DES), pot:media(v,POT), ready:l.ready||"", ok:passa(v)};
+  })};
+}
+function evolucao(st){
+  var ids = [], nomes = {};
+  st.ciclos.forEach(function(c){ c.leaders.forEach(function(e){ if(ids.indexOf(e.id) < 0) ids.push(e.id); nomes[e.id] = e.name; }); });
+  return ids.map(function(id){
+    return {id:id, nome:nomes[id], pontos: st.ciclos.map(function(c){
+      var e = c.leaders.filter(function(x){ return x.id === id; })[0];
+      return e || null;
+    })};
+  });
+}
+
+/* Normalização e validação */
+function txt(x, max){ return typeof x === "string" ? x.slice(0, max || 5000) : ""; }
+function inteiro15(x){ if(typeof x !== "number" && typeof x !== "string") return null; var n = Number(x); return (x != null && x !== "" && n >= 1 && n <= 5 && Math.floor(n) === n) ? n : null; }
+function notasObj(o){ var r = {}; if(o && typeof o === "object") IDS.forEach(function(id){ var n = inteiro15(o[id]); if(n != null) r[id] = n; }); return r; }
+function mapaTxt(o){
+  var r = {}, n = 0;
+  if(o && typeof o === "object") Object.keys(o).forEach(function(k){
+    if(n < 80 && /^[\w-]{1,24}$/.test(k) && typeof o[k] === "string" && o[k]){ r[k] = o[k].slice(0,5000); n++; }
+  });
+  return r;
+}
+function itens(a){
+  if(!Array.isArray(a)) return [];
+  return a.slice(0,80).filter(function(i){ return i && typeof i.t === "string" && i.t.trim(); })
+    .map(function(i){ return {id: txt(i.id,24) || uid(), t: i.t.slice(0,500), done: i.done === true}; });
+}
+function vazio(){
+  var ls = []; for(var i=0;i<5;i++) ls.push(novoLider());
+  return {versao:2, leaders:ls, cur:null, plan:{}, ciclos:[]};
+}
+function novoLider(){ return {id:uid(), name:"", cell:"", s:{}, c:{}, e:{}, ready:"", conv:{}, pdi:{p70:[],p20:[],p10:[]}}; }
+function normalizar(d){
+  var usados = {};
+  var leaders = (Array.isArray(d.leaders) ? d.leaders : []).slice(0,60).filter(function(l){ return l && typeof l === "object"; }).map(function(l){
+    var id = txt(l.id,24); if(!id || usados[id]) id = uid(); usados[id] = 1;
+    var pdi = l.pdi && typeof l.pdi === "object" ? l.pdi : {};
+    return {id:id, name:txt(l.name,120), cell:txt(l.cell,120), s:notasObj(l.s), c:notasObj(l.c), e:mapaTxt(l.e),
+      ready:txt(l.ready,80), conv:mapaTxt(l.conv), pdi:{p70:itens(pdi.p70), p20:itens(pdi.p20), p10:itens(pdi.p10)}};
+  });
+  var plan = {}, pi = d.plan && typeof d.plan === "object" ? d.plan : {};
+  ["succ","backup"].forEach(function(k){ plan[k] = txt(pi[k],24); });
+  PLAN_TXT.forEach(function(k){ plan[k] = txt(pi[k]); });
+  var ciclos = (Array.isArray(d.ciclos) ? d.ciclos : []).slice(0,100).filter(function(c){ return c && Array.isArray(c.leaders); }).map(function(c){
+    return {id:txt(c.id,24) || uid(), data:(/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(txt(c.data,10)) ? txt(c.data,10) : ""), rotulo:txt(c.rotulo,80), leaders:c.leaders.slice(0,60).filter(function(e){ return e && typeof e === "object"; }).map(function(e){
+      var s = notasObj(e.s), v = {s:s};
+      return {id:txt(e.id,24), name:txt(e.name,120), s:s, des:media(v,DES), pot:media(v,POT), ready:txt(e.ready,80), ok:passa(v)};
+    })};
+  });
+  return {versao:2, leaders:leaders, cur:txt(d.cur,24) || null, plan:plan, ciclos:ciclos};
+}
+/* v1 -> v2: nota antiga vira nota do gestor; nada se perde */
+function migrar(v1){
+  if(!v1 || !Array.isArray(v1.leaders)) return null;
+  return normalizar({leaders:v1.leaders, cur:v1.cur, plan:v1.plan, ciclos:[]});
+}
+function validar(raw){
+  if(!raw || typeof raw !== "object" || Array.isArray(raw)) return {ok:false, erro:"O arquivo não tem o formato esperado."};
+  if(!Array.isArray(raw.leaders)) return {ok:false, erro:"O arquivo não tem a lista de líderes."};
+  if(raw.versao != null && raw.versao !== 1 && raw.versao !== 2) return {ok:false, erro:"Este arquivo é de uma versão que a ferramenta não conhece."};
+  if(raw.leaders.length > 60) return {ok:false, erro:"O arquivo tem líderes demais."};
+  for(var i=0;i<raw.leaders.length;i++){
+    var l = raw.leaders[i];
+    if(!l || typeof l !== "object" || Array.isArray(l)) return {ok:false, erro:"Há um líder com dados inválidos."};
+    if(l.name != null && typeof l.name !== "string") return {ok:false, erro:"Há um nome inválido no arquivo."};
+  }
+  var estado = raw.versao === 2 ? normalizar(raw) : migrar(raw);
+  return {ok:true, estado:estado};
+}
+function csvCampo(v){ v = String(v==null?"":v); if(/^[=+@-]/.test(v)) v = "'" + v; return '"' + String(v==null?"":v).replace(/"/g,'""') + '"'; }
+function csv(st, C){
+  var P = (C && C.pilares) || ESTR.map(function(p){ return {id:p.id, nome:p.id}; });
+  var NB = (C && C.nineBox) || {};
+  var head = ["Líder","Área"].concat(
+    P.map(function(p){ return "Nota do gestor: "+p.nome; }),
+    P.map(function(p){ return "Nota calibrada: "+p.nome; }),
+    P.map(function(p){ return "Evidência: "+p.nome; }),
+    ["Desempenho","Potencial","Quadrante da 9-box","Filtros","Prontidão"]);
+  var rows = st.leaders.filter(nomeado).map(function(l){
+    var d = des(l), p = pot(l), ok = passa(l), q = "";
+    if(d != null && p != null){ var b = NB[faixa(p)+"-"+faixa(d)]; q = b ? b.rotulo : ""; }
+    return [l.name.trim(), l.cell].concat(
+      P.map(function(x){ return l.s[x.id] || ""; }),
+      P.map(function(x){ return l.c[x.id] || ""; }),
+      P.map(function(x){ return l.e[x.id] || ""; }),
+      [fmt(d), fmt(p), q, ok==null ? "incompleto" : ok ? "passa" : "não passa", l.ready]);
+  });
+  return "﻿" + [head].concat(rows).map(function(r){ return r.map(csvCampo).join(";"); }).join("\r\n");
+}
+
+window.MS = {KEY:KEY, KEY_V1:KEY_V1, ESTR:ESTR, IDS:IDS, uid:uid, esc:esc, fmt:fmt, rotulo:rotulo, nomeado:nomeado,
+  nota:nota, media:media, des:des, pot:pot, faixa:faixa, passa:passa, mudancas:mudancas, linhas:linhas, filtrar:filtrar,
+  sugestoes:sugestoes, snapshot:snapshot, evolucao:evolucao, vazio:vazio, novoLider:novoLider, normalizar:normalizar,
+  migrar:migrar, validar:validar, csv:csv};
+})();
+</script>
 <script>
 (function(){
-const KEY = "matriz-sucessao-v1";
-const PILLARS = [
-  {id:"p1", name:"Resultado", group:"des", q:"A área dele entrega resultado há 12 a 24 meses, sem depender de você?",
-   a:{1:"Entrega oscila e depende de cobrança",3:"Entrega o combinado",5:"Entrega acima do combinado há mais de 12 meses, sem depender de mim"}},
-  {id:"p2", name:"Aprendizado e potencial", group:"pot", q:"Ele se sai bem no que é novo e fora da área dele?",
-   a:{1:"Fica preso ao que já sabe",3:"Aprende quando é ensinado",5:"Busca o novo sozinho e domina rápido temas fora da área"}},
-  {id:"p3", name:"Liderança de pessoas", group:"des", q:"O time dele é engajado e estável? Ele forma gente?",
-   a:{1:"Time desengajado ou dependente dele",3:"Time estável",5:"Time engajado e com gente pronta para substituí-lo"}},
-  {id:"p4", name:"Visão do todo", group:"pot", q:"Ele enxerga caixa, riscos, controles e o impacto de uma área na outra?",
-   a:{1:"Só enxerga a própria área",3:"Entende as áreas vizinhas",5:"Pensa em caixa, risco e resultado da área toda"}},
-  {id:"p5", name:"Relacionamento e influência", group:"pot", q:"Ele se sustenta diante da diretoria, de outras áreas e de parceiros?",
-   a:{1:"Evita ou trava com outras áreas",3:"Se relaciona bem no dia a dia",5:"É respeitado pela diretoria, por outras áreas e por parceiros"}},
-  {id:"p6", name:"Integridade e confiança", group:"filtro", min:4, q:"Ética, compliance e discrição. No financeiro, é eliminatório.",
-   a:{1:"Há dúvida",3:"Confiável",5:"Referência de ética e discrição"}},
-  {id:"p7", name:"Vontade de assumir", group:"filtro", min:3, q:"Ele quer o cargo e o peso que vem junto? Pergunte numa conversa de carreira.",
-   a:{1:"Não quer",3:"Aceitaria",5:"Quer e já age como dono"}}
-];
-const READY = ["","Pronto agora","Pronto em 1 a 2 anos","Pronto em 3 anos ou mais"];
-const uid = () => Math.random().toString(36).slice(2,9);
-const blank = () => ({id:uid(), name:"", cell:"", s:{}, e:{}, ready:""});
-let state = {leaders:[blank(),blank(),blank(),blank(),blank()], cur:null, plan:{}};
+"use strict";
+var MS = window.MS, esc = MS.esc, fmt = MS.fmt, rotulo = MS.rotulo;
+var C = window.CONTEUDO || {};
+var P = C.pilares || [];
+var NB = C.nineBox || {};
+var PRONT = C.prontidao || [];
+var state = MS.vazio();
+var selBox = null, filtro = "todos";
+var $ = function(id){ return document.getElementById(id); };
+var PG = {}; P.forEach(function(p){ PG[p.id] = p; });
+function pnome(id){ return PG[id] ? PG[id].nome : id; }
+function pmin(id){ var e = MS.ESTR.filter(function(x){ return x.id === id; })[0]; return PG[id] && PG[id].minimo != null ? PG[id].minimo : (e ? e.minimo : null); }
+function pgrupo(id){ var e = MS.ESTR.filter(function(x){ return x.id === id; })[0]; return PG[id] && PG[id].grupo ? PG[id].grupo : (e ? e.grupo : "pot"); }
+function lider(id){ return state.leaders.filter(function(l){ return l.id === id; })[0]; }
+function named(){ return state.leaders.filter(MS.nomeado); }
 
-function load(){ try{ const raw = localStorage.getItem(KEY); if(raw){ const d = JSON.parse(raw); if(d && Array.isArray(d.leaders)) state = Object.assign({plan:{}}, d); } }catch(e){} }
-let t;
-function save(){ try{ localStorage.setItem(KEY, JSON.stringify(state)); const el=document.getElementById("saved"); el.textContent="Salvo"; clearTimeout(t); t=setTimeout(()=>el.textContent="",1500);}catch(e){} }
-const esc = s => String(s==null?"":s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const named = () => state.leaders.filter(l => l.name.trim());
-const label = l => l.name.trim() || "(sem nome)";
+/* Armazenamento */
+function load(){
+  var achou = false;
+  try{
+    var raw = localStorage.getItem(MS.KEY);
+    if(raw){ var v = MS.validar(JSON.parse(raw)); if(v.ok){ state = v.estado; achou = true; } else { localStorage.setItem(MS.KEY+"-backup-"+Date.now(), raw); } }
+  }catch(e){}
+  if(achou) return;
+  try{
+    var old = localStorage.getItem(MS.KEY_V1);
+    if(old){ var m = MS.migrar(JSON.parse(old)); if(m){ state = m; save(); } }
+  }catch(e){}
+}
+var timer;
+function save(){
+  try{
+    localStorage.setItem(MS.KEY, JSON.stringify(state));
+    var el = $("saved"); el.textContent = "Salvo"; clearTimeout(timer); timer = setTimeout(function(){ el.textContent = ""; }, 1500);
+  }catch(e){}
+}
+function hoje(){ var d = new Date(), z = function(n){ return (n<10?"0":"")+n; }; return d.getFullYear()+"-"+z(d.getMonth()+1)+"-"+z(d.getDate()); }
+function dataBR(s){ var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(s||""); return m ? m[3]+"/"+m[2]+"/"+m[1] : (s ? esc(s) : "–"); }
 
-function avg(l, ids){ const v = ids.map(i => l.s[i]).filter(x => x); return v.length === ids.length ? v.reduce((a,b)=>a+b,0)/v.length : null; }
-const des = l => avg(l,["p1","p3"]);
-const pot = l => avg(l,["p2","p4","p5"]);
-const lvl = x => x==null ? null : (x >= 4 ? 2 : x >= 2.5 ? 1 : 0);
-function passes(l){ const i=l.s.p6, v=l.s.p7; if(!i || !v) return null; return i>=4 && v>=3; }
-const fmt = x => x==null ? "–" : x.toFixed(1).replace(".",",");
-
-/* Tabs */
-function show(tab){
-  document.querySelectorAll("nav button").forEach(b => b.setAttribute("aria-selected", b.dataset.tab===tab));
-  document.querySelectorAll("main section").forEach(s => s.hidden = s.id !== tab);
-  if(tab==="avaliar") renderEval(); if(tab==="resultado") renderResult(); if(tab==="plano") renderPlan();
-  try{ sessionStorage.setItem(KEY+"-tab", tab); }catch(e){}
+/* Abas */
+var TABS = ["time","avaliar","conversas","resultado","pdi","sucessor","ciclos","ajuda"];
+function show(tab, foco){
+  document.querySelectorAll("#tabs button").forEach(function(b){ var on = b.dataset.tab === tab; b.setAttribute("aria-selected", on ? "true" : "false"); b.tabIndex = on ? 0 : -1; });
+  document.querySelectorAll("main section").forEach(function(s){ s.hidden = s.id !== tab; });
+  ({avaliar:renderEval, conversas:renderConv, resultado:renderResult, pdi:renderPdi, sucessor:renderPlan, ciclos:renderCiclos, ajuda:renderAjuda}[tab] || function(){})();
+  try{ sessionStorage.setItem(MS.KEY+"-tab", tab); }catch(e){}
+  if(foco) $("tab-"+tab).focus();
   window.scrollTo(0,0);
 }
-document.querySelectorAll("nav button").forEach(b => b.onclick = () => show(b.dataset.tab));
-document.querySelectorAll("[data-go]").forEach(b => b.onclick = () => show(b.dataset.go));
+document.querySelectorAll("#tabs button").forEach(function(b){
+  b.onclick = function(){ show(b.dataset.tab); };
+  b.onkeydown = function(e){
+    var i = TABS.indexOf(b.dataset.tab), n = null;
+    if(e.key === "ArrowRight") n = (i+1) % TABS.length; else if(e.key === "ArrowLeft") n = (i+TABS.length-1) % TABS.length;
+    else if(e.key === "Home") n = 0; else if(e.key === "End") n = TABS.length-1;
+    if(n != null){ e.preventDefault(); show(TABS[n], true); }
+  };
+});
+document.querySelectorAll("[data-go]").forEach(function(b){ b.onclick = function(){ show(b.dataset.go); }; });
 
-/* Team */
+/* Seletor de líder (compartilhado) */
+function picker(el, extra, after){
+  var list = named();
+  if(!list.length){ el.innerHTML = ""; return null; }
+  if(!list.some(function(l){ return l.id === state.cur; })) state.cur = list[0].id;
+  el.innerHTML = list.map(function(l){
+    return '<button class="chip" data-id="'+esc(l.id)+'" aria-pressed="'+(l.id===state.cur)+'">'+esc(rotulo(l))+(extra ? extra(l) : "")+'</button>';
+  }).join("");
+  el.querySelectorAll("button").forEach(function(b){ b.onclick = function(){ state.cur = b.dataset.id; save(); after(); }; });
+  return lider(state.cur);
+}
+function semLider(el){ el.innerHTML = '<p class="note">Cadastre os líderes na aba 1 primeiro.</p>'; }
+
+/* Time */
 function renderTeam(){
-  const box = document.getElementById("leaders");
-  box.innerHTML = state.leaders.map((l,i) => `
-    <div class="row">
-      <div><label for="n${l.id}">Líder ${i+1}</label><input type="text" id="n${l.id}" data-id="${l.id}" data-f="name" value="${esc(l.name)}" placeholder="Nome"></div>
-      <div><label for="c${l.id}">Área</label><input type="text" id="c${l.id}" data-id="${l.id}" data-f="cell" value="${esc(l.cell)}" placeholder="Ex.: Contas a pagar"></div>
-      <button class="btn ghost" data-del="${l.id}" aria-label="Remover líder ${i+1}">Remover</button>
-    </div>`).join("");
-  box.querySelectorAll("input").forEach(inp => inp.oninput = () => { const l = state.leaders.find(x=>x.id===inp.dataset.id); l[inp.dataset.f] = inp.value; save(); });
-  box.querySelectorAll("[data-del]").forEach(b => b.onclick = () => {
-    const l = state.leaders.find(x=>x.id===b.dataset.del);
-    if((l.name || Object.keys(l.s).length) && !confirm("Remover " + label(l) + " e as notas dele?")) return;
-    state.leaders = state.leaders.filter(x => x.id !== b.dataset.del); save(); renderTeam(); });
+  var box = $("leaders");
+  box.innerHTML = state.leaders.map(function(l,i){ return '<div class="row">'+
+    '<div><label for="n'+esc(l.id)+'">Líder '+(i+1)+'</label><input type="text" id="n'+esc(l.id)+'" data-id="'+esc(l.id)+'" data-f="name" value="'+esc(l.name)+'" placeholder="Nome"></div>'+
+    '<div><label for="c'+esc(l.id)+'">Área</label><input type="text" id="c'+esc(l.id)+'" data-id="'+esc(l.id)+'" data-f="cell" value="'+esc(l.cell)+'" placeholder="Ex.: Contas a pagar"></div>'+
+    '<button class="btn ghost" data-del="'+esc(l.id)+'" aria-label="Remover líder '+(i+1)+'">Remover</button></div>'; }).join("");
+  box.querySelectorAll("input").forEach(function(inp){ inp.oninput = function(){ lider(inp.dataset.id)[inp.dataset.f] = inp.value; save(); }; });
+  box.querySelectorAll("[data-del]").forEach(function(b){ b.onclick = function(){
+    var l = lider(b.dataset.del);
+    if((l.name || Object.keys(l.s).length) && !confirm("Remover " + rotulo(l) + " e os dados dele?")) return;
+    state.leaders = state.leaders.filter(function(x){ return x.id !== b.dataset.del; });
+    ["succ","backup"].forEach(function(k){ if(state.plan[k] === b.dataset.del) state.plan[k] = ""; }); save(); renderTeam(); }; });
 }
-document.getElementById("add").onclick = () => { state.leaders.push(blank()); save(); renderTeam(); };
+$("add").onclick = function(){ state.leaders.push(MS.novoLider()); save(); renderTeam(); };
 
-/* Evaluation */
-function renderEval(){
-  const list = named(); const pick = document.getElementById("pick"); const form = document.getElementById("form");
-  if(!list.length){ pick.innerHTML=""; form.innerHTML = '<p class="note">Cadastre os líderes na aba 1 primeiro.</p>'; return; }
-  if(!list.find(l=>l.id===state.cur)) state.cur = list[0].id;
-  pick.innerHTML = list.map(l => {
-    const done = PILLARS.filter(p => l.s[p.id]).length;
-    return `<button class="chip" data-id="${l.id}" aria-pressed="${l.id===state.cur}">${esc(label(l))} · ${done}/7</button>`; }).join("");
-  pick.querySelectorAll("button").forEach(b => b.onclick = () => { state.cur = b.dataset.id; save(); renderEval(); });
-  const l = state.leaders.find(x => x.id===state.cur);
-  form.innerHTML = `<h3>${esc(label(l))}${l.cell ? ' <span class="tag">'+esc(l.cell)+'</span>' : ""}</h3>` +
-    PILLARS.map((p,i) => `
-    <div class="pillar">
-      <div class="ptitle"><b>${i+1}. ${p.name}</b>${p.group==="filtro" ? '<span class="tag filter">Filtro: mínimo '+p.min+'</span>' : '<span class="tag">'+(p.group==="des"?"Desempenho":"Potencial")+'</span>'}</div>
-      <div class="q">${p.q}</div>
-      <div class="scale" role="group" aria-label="Nota de ${p.name}">
-        ${[1,2,3,4,5].map(n => `<button data-p="${p.id}" data-n="${n}" aria-pressed="${l.s[p.id]===n}">${n}</button>`).join("")}
-      </div>
-      <div class="anchor" id="a${p.id}">${anchorText(p, l.s[p.id])}</div>
-      <label for="e${p.id}">Evidência</label>
-      <textarea id="e${p.id}" data-e="${p.id}" placeholder="Um fato concreto que justifica a nota">${esc(l.e[p.id]||"")}</textarea>
-    </div>`).join("") + `
-    <div class="pillar">
-      <div class="ptitle"><b>8. Prontidão</b><span class="tag">Leitura do conjunto</span></div>
-      <div class="q">Se você saísse, em quanto tempo ele estaria pronto para assumir?</div>
-      <select id="ready">${READY.map(r => `<option ${l.ready===r?"selected":""} value="${r}">${r || "Escolha"}</option>`).join("")}</select>
-    </div>`;
-  form.querySelectorAll(".scale button").forEach(b => b.onclick = () => {
-    const p = b.dataset.p, n = +b.dataset.n; l.s[p] = l.s[p]===n ? undefined : n; if(!l.s[p]) delete l.s[p]; save();
-    b.parentNode.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", +x.dataset.n===l.s[p]));
-    document.getElementById("a"+p).textContent = anchorText(PILLARS.find(x=>x.id===p), l.s[p]);
-    const chip = pick.querySelector(`[data-id="${l.id}"]`); chip.textContent = label(l)+" · "+PILLARS.filter(x=>l.s[x.id]).length+"/7";
-  });
-  form.querySelectorAll("textarea[data-e]").forEach(tx => tx.oninput = () => { l.e[tx.dataset.e] = tx.value; save(); });
-  document.getElementById("ready").onchange = e => { l.ready = e.target.value; save(); };
-}
+/* Avaliar */
 function anchorText(p, n){
-  if(!n) return "1: "+p.a[1]+" · 3: "+p.a[3]+" · 5: "+p.a[5];
-  if(n===2) return "2: entre “"+p.a[1]+"” e “"+p.a[3]+"”";
-  if(n===4) return "4: entre “"+p.a[3]+"” e “"+p.a[5]+"”";
-  return n+": "+p.a[n];
+  var a = p.ancoras || {};
+  if(!n) return "1: "+(a[1]||"")+" · 3: "+(a[3]||"")+" · 5: "+(a[5]||"");
+  return n+": "+(a[n]||"");
+}
+function scaleHtml(pid, kind, cur, nome){
+  var r = [1,2,3,4,5].map(function(n){ return '<button class="n" data-p="'+pid+'" data-k="'+kind+'" data-n="'+n+'" aria-pressed="'+(cur===n)+'" aria-label="'+esc(nome)+': nota '+n+'">'+n+'</button>'; }).join("");
+  return r;
+}
+function diffHtml(l, pid){
+  var m = MS.mudancas(l).filter(function(x){ return x.id === pid; })[0];
+  return m ? 'Calibração mudou a nota de '+(m.de==null?"–":m.de)+' para '+m.para+'.' : "";
+}
+function chipCount(l){ return " · "+P.filter(function(p){ return l.s[p.id]; }).length+"/"+P.length; }
+function renderEval(){
+  var pick = $("pick"), form = $("form");
+  var l = picker(pick, chipCount, renderEval);
+  if(!l){ semLider(form); return; }
+  form.innerHTML = '<h3>'+esc(rotulo(l))+(l.cell ? ' <span class="tag">'+esc(l.cell)+'</span>' : "")+'</h3>'+
+    P.map(function(p,i){
+      var grupo = pgrupo(p.id), min = pmin(p.id);
+      return '<div class="pillar"><div class="ptitle"><b>'+(i+1)+'. '+esc(p.nome)+'</b>'+(grupo==="filtro" ? '<span class="tag filter">Filtro: mínimo '+min+'</span>' : '<span class="tag">'+(grupo==="des"?"Desempenho":"Potencial")+'</span>')+'</div>'+
+      '<div class="q">'+esc(p.pergunta)+'</div>'+
+      (p.evidencias && p.evidencias.length ? '<div class="hint">Onde buscar evidência:<ul>'+p.evidencias.map(function(x){ return '<li>'+esc(x)+'</li>'; }).join("")+'</ul></div>' : "")+
+      '<div class="scale" role="group" aria-label="Nota do gestor para '+esc(p.nome)+'">'+scaleHtml(p.id,"s",l.s[p.id],p.nome)+'</div>'+
+      '<div class="anchor" id="a'+p.id+'">'+esc(anchorText(p,l.s[p.id]))+'</div>'+
+      '<label for="e'+p.id+'">Evidência</label>'+
+      '<textarea id="e'+p.id+'" data-e="'+p.id+'" placeholder="Um fato concreto que justifica a nota">'+esc(l.e[p.id]||"")+'</textarea>'+
+      '<details'+(l.c[p.id] ? " open" : "")+' style="margin-top:8px"><summary>Nota calibrada (opcional)</summary>'+
+      '<p class="hint">Preencha só se a nota mudou na calibração com seu superior e o RH. Os cálculos passam a usar esta nota.</p>'+
+      '<div class="scale cal" role="group" aria-label="Nota calibrada para '+esc(p.nome)+'">'+scaleHtml(p.id,"c",l.c[p.id],p.nome+" calibrada")+
+      '<button class="btn small ghost" data-clear="'+p.id+'" aria-label="Limpar a nota calibrada de '+esc(p.nome)+'">Limpar</button></div>'+
+      '<div class="chg" id="d'+p.id+'" aria-live="polite">'+esc(diffHtml(l,p.id))+'</div></details></div>';
+    }).join("")+
+    '<div class="pillar"><div class="ptitle"><b>'+(P.length+1)+'. Prontidão</b><span class="tag">Leitura do conjunto</span></div>'+
+    '<div class="q">Se você saísse, em quanto tempo ele estaria pronto para assumir?</div>'+
+    '<label for="ready" class="sr">Prontidão</label><select id="ready"><option value="">Escolha</option>'+
+    PRONT.map(function(r){ return '<option value="'+esc(r)+'"'+(l.ready===r?" selected":"")+'>'+esc(r)+'</option>'; }).join("")+'</select></div>';
+  function refresh(pid){
+    form.querySelectorAll('.scale button.n[data-p="'+pid+'"]').forEach(function(x){
+      var cur = x.dataset.k === "s" ? l.s[pid] : l.c[pid];
+      x.setAttribute("aria-pressed", String(+x.dataset.n === cur));
+    });
+    $("a"+pid).textContent = anchorText(PG[pid], l.s[pid]);
+    $("d"+pid).textContent = diffHtml(l, pid);
+    var chip = pick.querySelector('[data-id="'+l.id+'"]'); if(chip) chip.textContent = rotulo(l)+chipCount(l);
+  }
+  form.querySelectorAll(".scale button.n").forEach(function(b){ b.onclick = function(){
+    var pid = b.dataset.p, n = +b.dataset.n, o = b.dataset.k === "s" ? l.s : l.c;
+    if(o[pid] === n) delete o[pid]; else o[pid] = n;
+    save(); refresh(pid); }; });
+  form.querySelectorAll("[data-clear]").forEach(function(b){ b.onclick = function(){ delete l.c[b.dataset.clear]; save(); refresh(b.dataset.clear); }; });
+  form.querySelectorAll("textarea[data-e]").forEach(function(tx){ tx.oninput = function(){ if(tx.value) l.e[tx.dataset.e] = tx.value; else delete l.e[tx.dataset.e]; save(); }; });
+  $("ready").onchange = function(e){ l.ready = e.target.value; save(); };
 }
 
-/* Result */
-function renderResult(){
-  const list = named();
-  const tb = document.getElementById("table");
-  if(!list.length){ tb.innerHTML='<p class="note">Cadastre e avalie os líderes primeiro.</p>'; document.getElementById("nine").innerHTML=""; return; }
-  const rows = list.map(l => ({l, d:des(l), p:pot(l), ok:passes(l)})).sort((a,b) => ((b.d||0)+(b.p||0)) - ((a.d||0)+(a.p||0)));
-  tb.innerHTML = `<table><thead><tr><th>Líder</th>${PILLARS.map((p,i)=>`<th title="${p.name}">${i+1}</th>`).join("")}<th>Desempenho</th><th>Potencial</th><th>Filtros</th><th>Prontidão</th></tr></thead><tbody>` +
-    rows.map(r => `<tr><td><b>${esc(label(r.l))}</b><br><span class="note">${esc(r.l.cell)}</span></td>${PILLARS.map(p=>`<td class="num">${r.l.s[p.id]||"–"}</td>`).join("")}
-      <td class="num">${fmt(r.d)}</td><td class="num">${fmt(r.p)}</td>
-      <td>${r.ok==null?'<span class="note">incompleto</span>':r.ok?'<span class="ok">Passa</span>':'<span class="no">Não passa</span>'}</td>
-      <td>${esc(r.l.ready)||'<span class="note">–</span>'}</td></tr>`).join("") +
-    `</tbody></table><p class="note">Colunas 1 a 7: ${PILLARS.map((p,i)=>(i+1)+". "+p.name).join(" · ")}</p>`;
-  const names = [["Enigma","Forte potencial","Estrela"],["Questionável","Mantenedor","Forte desempenho"],["Insuficiente","Eficaz","Profissional confiável"]];
-  const colors = [["c2","c3","c3"],["c1","c2","c3"],["c1","c1","c2"]];
-  let h = "";
-  for(let row=0; row<3; row++){
-    const pl = 2-row;
-    h += `<div class="ax y">${["Potencial baixo","Potencial médio","Potencial alto"][pl]}</div>`;
-    for(let dl=0; dl<3; dl++){
-      const inBox = rows.filter(r => lvl(r.d)===dl && lvl(r.p)===pl);
-      h += `<div class="box ${colors[row][dl]}"><b>${names[row][dl]}</b>${inBox.map(r=>`<span class="n">${esc(label(r.l))}${r.ok===false?" ⚠":""}</span>`).join("")}</div>`;
+/* Conversas */
+function renderConv(){
+  var box = $("conv");
+  var l = picker($("pickConv"), function(x){ var n = Object.keys(x.conv).length; return " · "+n+"/"+(C.roteiroCarreira||[]).length; }, renderConv);
+  if(!l){ semLider(box); return; }
+  box.innerHTML = '<h3>'+esc(rotulo(l))+'</h3>'+(C.roteiroCarreira||[]).map(function(q,i){
+    return '<div class="qa"><b>'+(i+1)+'. '+esc(q.pergunta)+'</b>'+
+      '<p class="hint">Revela: '+esc(q.objetivo)+(q.pilar ? ' · Pilar: '+esc(pnome(q.pilar)) : "")+'</p>'+
+      '<label for="q'+esc(q.id)+'" class="sr">Resposta</label>'+
+      '<textarea id="q'+esc(q.id)+'" data-q="'+esc(q.id)+'" placeholder="Resposta dele, com as suas palavras">'+esc(l.conv[q.id]||"")+'</textarea></div>';
+  }).join("");
+  box.querySelectorAll("textarea").forEach(function(tx){ tx.oninput = function(){ if(tx.value) l.conv[tx.dataset.q] = tx.value; else delete l.conv[tx.dataset.q]; save(); }; });
+}
+
+/* Resultado */
+var FILTROS = [["todos","Todos"],["passam","Passam nos filtros"],["naopassam","Não passam"],["incompletos","Incompletos"]];
+function cellNota(l, id){
+  var m = MS.mudancas(l).filter(function(x){ return x.id === id; })[0];
+  if(m) return '<span class="chg" title="Gestor '+(m.de==null?"–":m.de)+', calibrada '+m.para+'">'+(m.de==null?"–":m.de)+'→'+m.para+'</span><span class="sr"> (calibrada)</span>';
+  var n = MS.nota(l,id); return n != null ? n : "–";
+}
+function nineHtml(rows, interativo){
+  var h = "";
+  for(var row=0; row<3; row++){
+    var pl = 2-row;
+    h += '<div class="ax y">'+["Potencial baixo","Potencial médio","Potencial alto"][pl]+'</div>';
+    for(var dl=0; dl<3; dl++){
+      var k = pl+"-"+dl, b = NB[k] || {rotulo:k};
+      var cor = "c"+(pl+dl >= 3 ? 3 : pl+dl >= 2 ? 2 : 1);
+      var quem = rows.filter(function(r){ return r.fd===dl && r.fp===pl; });
+      var inner = '<b>'+esc(b.rotulo)+'</b>'+quem.map(function(r){ return '<span class="n">'+esc(rotulo(r.l))+(r.ok===false?" ⚠":"")+'</span>'; }).join("");
+      h += interativo ? '<button class="box '+cor+'" data-k="'+k+'" aria-pressed="'+(selBox===k)+'">'+inner+'</button>' : '<div class="box '+cor+'">'+inner+'</div>';
     }
   }
-  h += `<div></div><div class="ax">Desempenho baixo</div><div class="ax">Desempenho médio</div><div class="ax">Desempenho alto</div>`;
-  document.getElementById("nine").innerHTML = h;
-  const pend = rows.filter(r => r.d==null || r.p==null).map(r=>label(r.l));
-  const old = document.getElementById("pendNote"); if(old) old.remove();
-  if(pend.length) document.getElementById("nine").insertAdjacentHTML("afterend", `<p class="note" id="pendNote">Fora da 9-box por falta de notas: ${pend.map(esc).join(", ")}. ⚠ = não passa nos filtros.</p>`);
+  return h + '<div></div><div class="ax">Desempenho baixo</div><div class="ax">Desempenho médio</div><div class="ax">Desempenho alto</div>';
+}
+function boxInfo(rows){
+  var el = $("boxInfo");
+  if(!selBox){ el.textContent = "Toque em um quadrante."; return; }
+  var b = NB[selBox] || {}, d = selBox.split("-"), quem = rows.filter(function(r){ return r.fp === +d[0] && r.fd === +d[1]; });
+  el.innerHTML = '<b>'+esc(b.rotulo||"")+'</b> · '+(quem.length ? esc(quem.map(function(r){ return rotulo(r.l); }).join(", ")) : "ninguém aqui")+'<br>'+esc(b.orientacao||"");
+}
+function renderResult(){
+  var fl = $("filtros");
+  fl.innerHTML = FILTROS.map(function(f){ return '<button class="chip" data-f="'+f[0]+'" aria-pressed="'+(filtro===f[0])+'">'+f[1]+'</button>'; }).join("");
+  fl.querySelectorAll("button").forEach(function(b){ b.onclick = function(){ filtro = b.dataset.f; renderResult(); }; });
+  var todos = MS.linhas(state), rows = MS.filtrar(todos, filtro);
+  var tb = $("table");
+  if(!todos.length){ tb.innerHTML = '<p class="note">Cadastre e avalie os líderes primeiro.</p>'; $("nine").innerHTML = ""; $("pendNote").innerHTML = ""; $("mudancas").innerHTML = ""; }
+  else {
+    tb.innerHTML = tabelaHtml(rows);
+    $("nine").innerHTML = nineHtml(rows, true);
+    $("nine").querySelectorAll("button.box").forEach(function(b){ b.onclick = function(){ selBox = selBox === b.dataset.k ? null : b.dataset.k; renderResult(); }; });
+    var pend = rows.filter(function(r){ return r.d==null || r.p==null; }).map(function(r){ return rotulo(r.l); });
+    $("pendNote").innerHTML = '<p class="note">'+(pend.length ? 'Fora da 9-box por falta de notas: '+pend.map(esc).join(", ")+'. ' : "")+'⚠ = não passa nos filtros.</p>';
+    var ch = [];
+    todos.forEach(function(r){ MS.mudancas(r.l).forEach(function(m){ ch.push('<li><b>'+esc(rotulo(r.l))+'</b> · '+esc(pnome(m.id))+': '+(m.de==null?"sem nota":m.de)+' → '+m.para+'</li>'); }); });
+    $("mudancas").innerHTML = '<h3>Onde a calibração mudou notas</h3>'+(ch.length ? '<ul>'+ch.join("")+'</ul>' : '<p class="note">Nenhuma nota calibrada até agora.</p>');
+  }
+  boxInfo(rows);
+  $("prepCal").innerHTML = '<h3>Como conduzir a calibração</h3><ol>'+(C.calibracao||[]).map(function(x){ return '<li>'+esc(x)+'</li>'; }).join("")+'</ol>'+viesesHtml();
+}
+function tabelaHtml(rows){
+  if(!rows.length) return '<p class="note">Nenhum líder neste filtro.</p>';
+  return '<table><thead><tr><th>Líder</th>'+P.map(function(p,i){ return '<th title="'+esc(p.nome)+'">'+(i+1)+'</th>'; }).join("")+'<th>Desempenho</th><th>Potencial</th><th>Filtros</th><th>Prontidão</th></tr></thead><tbody>'+
+    rows.map(function(r){ return '<tr><td><b>'+esc(rotulo(r.l))+'</b><br><span class="note">'+esc(r.l.cell)+'</span></td>'+P.map(function(p){ return '<td class="num">'+cellNota(r.l,p.id)+'</td>'; }).join("")+
+      '<td class="num">'+fmt(r.d)+'</td><td class="num">'+fmt(r.p)+'</td>'+
+      '<td>'+(r.ok==null?'<span class="note">incompleto</span>':r.ok?'<span class="ok">Passa</span>':'<span class="no">Não passa</span>')+'</td>'+
+      '<td>'+(esc(r.l.ready)||'<span class="note">–</span>')+'</td></tr>'; }).join("")+
+    '</tbody></table><p class="note">Colunas 1 a '+P.length+': '+P.map(function(p,i){ return (i+1)+'. '+esc(p.nome); }).join(" · ")+'. Em laranja: nota mudou na calibração (gestor → calibrada).</p>';
+}
+function viesesHtml(){
+  var v = C.vieses || [];
+  if(!v.length) return "";
+  return '<h3 style="margin-top:14px">Cuidado com os vieses</h3>'+v.map(function(x){ return '<details><summary>'+esc(x.nome)+'</summary><p class="note">'+esc(x.descricao)+'<br><b>Como evitar:</b> '+esc(x.comoEvitar)+'</p></details>'; }).join("");
 }
 
-/* Plan */
-const PF = ["p70","p20","p10","m90","m180","m365","next","notes"];
-function renderPlan(){
-  const list = named();
-  ["succ","backup"].forEach(k => {
-    const sel = document.getElementById(k);
-    sel.innerHTML = `<option value="">Escolha</option>` + list.map(l => `<option value="${l.id}" ${state.plan[k]===l.id?"selected":""}>${esc(label(l))}</option>`).join("");
-    sel.onchange = () => { state.plan[k] = sel.value; save(); planAlert(); };
+/* PDI */
+var COL = [["p70","70% · Prática no trabalho"],["p20","20% · Convivência e exposição"],["p10","10% · Formação"]];
+function renderPdi(){
+  var body = $("pdiBody");
+  var l = picker($("pickPdi"), function(x){ var n = x.pdi.p70.length + x.pdi.p20.length + x.pdi.p10.length; return n ? " · "+n : ""; }, renderPdi);
+  if(!l){ semLider(body); return; }
+  var sug = MS.sugestoes(l, C);
+  var html = '<div class="grid3">'+COL.map(function(c){
+    return '<div class="card"><h3>'+c[1]+'</h3><div>'+(l.pdi[c[0]].map(function(it){
+      return '<div class="item'+(it.done?" done":"")+'"><input type="checkbox" data-done="'+c[0]+'" data-i="'+esc(it.id)+'" aria-label="Concluída: '+esc(it.t)+'"'+(it.done?" checked":"")+'><span>'+esc(it.t)+'</span>'+
+        '<button class="btn small ghost" data-rm="'+c[0]+'" data-i="'+esc(it.id)+'" aria-label="Remover ação: '+esc(it.t)+'">Remover</button></div>'; }).join("") || '<p class="note">Nenhuma ação ainda.</p>')+'</div>'+
+      '<label for="add-'+c[0]+'" style="margin-top:8px">Nova ação, com prazo</label><input type="text" id="add-'+c[0]+'" data-add="'+c[0]+'" placeholder="Ex.: assumir o fluxo de caixa até março">'+
+      '<div class="tools" style="margin-top:8px"><button class="btn small" data-addbtn="'+c[0]+'">Adicionar</button></div></div>';
+  }).join("")+'</div>';
+  html += '<div class="card"><h3>Sugestões para '+esc(rotulo(l))+'</h3>';
+  if(!sug.length) html += '<p class="note">Nenhum pilar com nota 3 ou menos. Quando houver, as sugestões aparecem aqui.</p>';
+  sug.forEach(function(s){
+    html += '<p style="margin:10px 0 4px"><b>'+esc(s.nome)+'</b> · nota '+s.nota+'</p><div class="grid3">'+COL.map(function(c){
+      return '<div>'+(s.acoes[c[0]]||[]).map(function(a){
+        var ja = l.pdi[c[0]].some(function(it){ return it.t === a; });
+        return '<button class="sug" data-sug="'+c[0]+'" data-t="'+esc(a)+'"'+(ja?" disabled":"")+'>'+(ja?"Adicionada: ":"+ ")+esc(a)+'</button>'; }).join("")+'</div>'; }).join("")+'</div>';
   });
-  PF.forEach(k => { const el = document.getElementById(k); el.value = state.plan[k]||""; el.oninput = () => { state.plan[k] = el.value; save(); }; });
+  body.innerHTML = html+'</div>';
+  function add(col, t){ t = (t||"").trim(); if(!t) return; l.pdi[col].push({id:MS.uid(), t:t.slice(0,500), done:false}); save(); renderPdi(); }
+  body.querySelectorAll("[data-addbtn]").forEach(function(b){ b.onclick = function(){ add(b.dataset.addbtn, $("add-"+b.dataset.addbtn).value); }; });
+  body.querySelectorAll("[data-add]").forEach(function(i){ i.onkeydown = function(e){ if(e.key === "Enter"){ e.preventDefault(); add(i.dataset.add, i.value); } }; });
+  body.querySelectorAll("[data-sug]").forEach(function(b){ b.onclick = function(){ add(b.dataset.sug, b.dataset.t); }; });
+  body.querySelectorAll("[data-rm]").forEach(function(b){ b.onclick = function(){ l.pdi[b.dataset.rm] = l.pdi[b.dataset.rm].filter(function(x){ return x.id !== b.dataset.i; }); save(); renderPdi(); }; });
+  body.querySelectorAll("[data-done]").forEach(function(c){ c.onchange = function(){
+    var it = l.pdi[c.dataset.done].filter(function(x){ return x.id === c.dataset.i; })[0]; if(it){ it.done = c.checked; save(); renderPdi(); } }; });
+}
+
+/* Sucessor */
+var PF = ["p70","p20","p10","m90","m180","m365","next","notes"];
+function renderPlan(){
+  var list = named();
+  ["succ","backup"].forEach(function(k){
+    var sel = $(k);
+    sel.innerHTML = '<option value="">Escolha</option>'+list.map(function(l){ return '<option value="'+esc(l.id)+'"'+(state.plan[k]===l.id?" selected":"")+'>'+esc(rotulo(l))+'</option>'; }).join("");
+    sel.onchange = function(){ state.plan[k] = sel.value; save(); planAlert(); };
+  });
+  PF.forEach(function(k){ var el = $(k); el.value = state.plan[k]||""; el.oninput = function(){ state.plan[k] = el.value; save(); }; });
   planAlert();
 }
 function planAlert(){
-  const box = document.getElementById("succAlert"); const msgs = [];
-  if(state.plan.succ && state.plan.succ===state.plan.backup) msgs.push("O sucessor principal e a reserva são a mesma pessoa.");
-  ["succ","backup"].forEach(k => { const l = state.leaders.find(x=>x.id===state.plan[k]); if(l && passes(l)===false) msgs.push(label(l)+" não passa nos filtros de integridade ou vontade."); });
-  box.innerHTML = msgs.map(m => `<div class="alert">${esc(m)}</div>`).join("");
+  var msgs = [];
+  if(state.plan.succ && state.plan.succ === state.plan.backup) msgs.push("O sucessor principal e a reserva são a mesma pessoa.");
+  ["succ","backup"].forEach(function(k){ var l = lider(state.plan[k]); if(l && MS.passa(l) === false) msgs.push(rotulo(l)+" não passa nos filtros de integridade ou vontade."); });
+  $("succAlert").innerHTML = msgs.map(function(m){ return '<div class="alert" role="alert">'+esc(m)+'</div>'; }).join("");
+}
+$("goPdi").onclick = function(){ if(state.plan.succ && lider(state.plan.succ)) state.cur = state.plan.succ; save(); show("pdi"); };
+
+/* Ciclos */
+function renderCiclos(){
+  if(!$("cicloData").value) $("cicloData").value = hoje();
+  var cl = $("ciclosLista");
+  cl.innerHTML = '<h3>Ciclos fechados</h3>'+(state.ciclos.length ? '<ul>'+state.ciclos.map(function(c){
+    return '<li>'+dataBR(c.data)+(c.rotulo ? ' · '+esc(c.rotulo) : "")+' · '+c.leaders.length+' líder(es) <button class="btn small ghost" data-delc="'+esc(c.id)+'" aria-label="Apagar o ciclo de '+esc(dataBR(c.data))+'">Apagar</button></li>'; }).join("")+'</ul>' : '<p class="note">Nenhum ciclo fechado ainda.</p>');
+  cl.querySelectorAll("[data-delc]").forEach(function(b){ b.onclick = function(){
+    if(!confirm("Apagar este ciclo do histórico?")) return;
+    state.ciclos = state.ciclos.filter(function(c){ return c.id !== b.dataset.delc; }); save(); renderCiclos(); }; });
+  var ev = MS.evolucao(state), box = $("evolucao");
+  if(!ev.length){ box.innerHTML = '<h3>Evolução</h3><p class="note">A tabela aparece depois do primeiro ciclo fechado.</p>'; return; }
+  box.innerHTML = '<h3>Evolução</h3><table><thead><tr><th>Líder</th>'+state.ciclos.map(function(c){ return '<th>'+dataBR(c.data)+(c.rotulo ? '<br>'+esc(c.rotulo) : "")+'</th>'; }).join("")+'</tr></thead><tbody>'+
+    ev.map(function(r){
+      var ant = null;
+      return '<tr><td><b>'+esc(r.nome||"(sem nome)")+'</b></td>'+r.pontos.map(function(p){
+        if(!p) return '<td class="note">–</td>';
+        var seta = function(a,b){ return (a==null||b==null) ? "" : b > a+0.001 ? ' <span class="ok" aria-label="subiu">▲</span>' : b < a-0.001 ? ' <span class="no" aria-label="caiu">▼</span>' : ""; };
+        var s = '<td>Desempenho '+fmt(p.des)+(ant ? seta(ant.des,p.des) : "")+'<br>Potencial '+fmt(p.pot)+(ant ? seta(ant.pot,p.pot) : "")+'<br><span class="note">'+(esc(p.ready)||"sem prontidão")+'</span></td>';
+        ant = p; return s; }).join("")+'</tr>'; }).join("")+'</tbody></table>';
+}
+$("fechar").onclick = function(){
+  if(!named().length){ alert("Cadastre ao menos um líder antes de fechar o ciclo."); return; }
+  var data = $("cicloData").value || hoje();
+  state.ciclos.push(MS.snapshot(state, data, $("cicloNome").value.trim()));
+  state.ciclos.sort(function(a,b){ return a.data < b.data ? -1 : a.data > b.data ? 1 : 0; });
+  $("cicloNome").value = ""; save(); renderCiclos();
+  $("saved").textContent = "Ciclo fechado e salvo";
+};
+
+/* Ajuda */
+function renderAjuda(){
+  var a = C.ajuda || {};
+  $("ajudaPassos").innerHTML = '<ol>'+(a.passos||[]).map(function(x){ return '<li>'+esc(x)+'</li>'; }).join("")+'</ol>';
+  $("ajudaVieses").innerHTML = viesesHtml() || "";
+  $("ajudaPriv").textContent = a.privacidade || "";
 }
 
-/* Export / import */
-function download(name, text, type){ const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([text],{type})); a.download = name; document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href); a.remove();},500); }
-const stamp = () => new Date().toISOString().slice(0,10);
-document.getElementById("exportJson").onclick = () => download("matriz-sucessao-"+stamp()+".json", JSON.stringify(state,null,2), "application/json");
-document.getElementById("importJson").onchange = e => {
-  const f = e.target.files[0]; if(!f) return; const r = new FileReader();
-  r.onload = () => { try{ const d = JSON.parse(r.result); if(!Array.isArray(d.leaders)) throw 0; state = Object.assign({plan:{}}, d); save(); renderTeam(); alert("Arquivo importado."); }catch(err){ alert("Não consegui ler esse arquivo."); } };
+/* Relatório de impressão */
+function renderRel(){
+  var rows = MS.linhas(state), box = $("rel");
+  var s = lider(state.plan.succ), b = lider(state.plan.backup);
+  var h = '<h1>Matriz de Sucessão · Relatório para a calibração</h1><p>Data: '+dataBR(hoje())+'. Notas calibradas, quando existem, aparecem como gestor → calibrada.</p>';
+  h += '<h2>Resultado</h2><div class="tbl">'+(rows.length ? tabelaHtml(rows) : '<p>Sem líderes avaliados.</p>')+'</div>';
+  h += '<h2>9-box</h2><div class="nine">'+nineHtml(rows,false)+'</div><p>⚠ = não passa nos filtros.</p>';
+  var orient = rows.filter(function(r){ return r.fd!=null && r.fp!=null; }).map(function(r){ var x = NB[r.fp+"-"+r.fd]; return '<li><b>'+esc(rotulo(r.l))+'</b> · '+esc(x?x.rotulo:"")+': '+esc(x?x.orientacao:"")+'</li>'; }).join("");
+  if(orient) h += '<ul>'+orient+'</ul>';
+  h += '<h2 class="pg">Evidências por líder</h2>'+rows.map(function(r){
+    var l = r.l;
+    return '<div class="lid"><h3>'+esc(rotulo(l))+(l.cell ? ' · '+esc(l.cell) : "")+'</h3><p>Desempenho '+fmt(r.d)+' · Potencial '+fmt(r.p)+' · '+(r.ok==null?"filtros incompletos":r.ok?"passa nos filtros":"não passa nos filtros")+' · '+(esc(l.ready)||"sem prontidão")+'</p>'+
+      '<ul>'+P.map(function(p){ var m = MS.mudancas(l).filter(function(x){ return x.id===p.id; })[0];
+        var n = m ? (m.de==null?"–":m.de)+" → "+m.para : (MS.nota(l,p.id) != null ? MS.nota(l,p.id) : "–");
+        return '<li><b>'+esc(p.nome)+'</b> ('+esc(n)+'): '+(esc(l.e[p.id])||'<i>sem evidência registrada</i>')+'</li>'; }).join("")+'</ul></div>';
+  }).join("");
+  h += '<h2 class="pg">Plano do sucessor</h2>';
+  if(!s) h += '<p>Sucessor principal ainda não escolhido.</p>';
+  else {
+    var pl = state.plan;
+    h += '<p><b>Sucessor principal:</b> '+esc(rotulo(s))+(b ? ' · <b>Reserva:</b> '+esc(rotulo(b)) : "")+'</p>';
+    COL.forEach(function(c){
+      var its = s.pdi[c[0]].map(function(it){ return '<li>'+(it.done?"[feito] ":"")+esc(it.t)+'</li>'; }).join("");
+      h += '<div class="lid"><h3>'+c[1]+'</h3>'+(pl[c[0]] ? '<p>'+esc(pl[c[0]]).replace(/\n/g,"<br>")+'</p>' : "")+(its ? '<ul>'+its+'</ul>' : (pl[c[0]] ? "" : '<p><i>Sem ações registradas.</i></p>'))+'</div>';
+    });
+    h += '<div class="lid"><h3>Marcos</h3><ul><li><b>90 dias:</b> '+esc(pl.m90||"–")+'</li><li><b>180 dias:</b> '+esc(pl.m180||"–")+'</li><li><b>12 meses:</b> '+esc(pl.m365||"–")+'</li><li><b>Próxima revisão:</b> '+esc(dataBR(pl.next))+'</li></ul></div>';
+    if(pl.notes) h += '<div class="lid"><h3>Anotações</h3><p>'+esc(pl.notes).replace(/\n/g,"<br>")+'</p></div>';
+  }
+  box.innerHTML = h;
+}
+function imprimir(){ renderRel(); window.print(); }
+window.addEventListener("beforeprint", renderRel);
+$("printRel").onclick = imprimir; $("printRel2").onclick = imprimir;
+
+/* Exportar e importar */
+function download(name, text, type){ var a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([text],{type:type})); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 500); }
+$("exportJson").onclick = function(){ download("matriz-sucessao-"+hoje()+".json", JSON.stringify(state,null,2), "application/json"); };
+$("exportCsv").onclick = function(){ download("matriz-sucessao-"+hoje()+".csv", MS.csv(state, C), "text/csv;charset=utf-8"); };
+$("importJson").onchange = function(e){
+  var f = e.target.files[0]; if(!f) return;
+  var r = new FileReader();
+  r.onload = function(){
+    var v;
+    try{ v = MS.validar(JSON.parse(r.result)); }catch(err){ v = {ok:false, erro:"Não consegui ler esse arquivo."}; }
+    if(!v.ok){ alert(v.erro); return; }
+    if(!confirm("Importar este arquivo e substituir os dados atuais deste navegador?")) return;
+    state = v.estado; save(); renderTeam(); alert("Arquivo importado.");
+  };
   r.readAsText(f); e.target.value = "";
 };
-document.getElementById("exportCsv").onclick = () => {
-  const q = v => '"' + String(v==null?"":v).replace(/"/g,'""') + '"';
-  const head = ["Líder","Área", ...PILLARS.map(p=>p.name), ...PILLARS.map(p=>"Evidência: "+p.name), "Desempenho","Potencial","Filtros","Prontidão"];
-  const lines = named().map(l => [label(l), l.cell, ...PILLARS.map(p=>l.s[p.id]||""), ...PILLARS.map(p=>l.e[p.id]||""), fmt(des(l)), fmt(pot(l)), passes(l)==null?"incompleto":passes(l)?"passa":"não passa", l.ready]);
-  download("matriz-sucessao-"+stamp()+".csv", "﻿" + [head, ...lines].map(r => r.map(q).join(";")).join("\r\n"), "text/csv");
-};
-document.getElementById("reset").onclick = () => {
+$("reset").onclick = function(){
   if(!confirm("Apagar todos os dados desta página neste navegador? Exporte o arquivo antes se quiser guardar.")) return;
-  state = {leaders:[blank(),blank(),blank(),blank(),blank()], cur:null, plan:{}}; save(); renderTeam(); show("time");
+  state = MS.vazio(); save(); renderTeam(); show("time");
 };
 
 load(); renderTeam();
-let start = "time"; try{ start = sessionStorage.getItem(KEY+"-tab") || "time"; }catch(e){}
-show(start);
+var start = "time"; try{ start = sessionStorage.getItem(MS.KEY+"-tab") || "time"; }catch(e){}
+show(TABS.indexOf(start) >= 0 ? start : "time");
 })();
 </script>
 </body>

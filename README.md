@@ -1,6 +1,7 @@
 # Matriz de Sucessão
 
-Ferramenta simples, em uma única página, para avaliar líderes em 7 pilares, posicioná-los na 9-box (desempenho × potencial) e montar o plano 70-20-10 do sucessor.
+Ferramenta em uma única página para avaliar líderes em 7 pilares, calibrar as notas, posicioná-los na 9-box (desempenho × potencial), registrar conversas de carreira, montar PDIs 70-20-10, preparar um sucessor e acompanhar a evolução por ciclos.
 
 - Não tem servidor nem banco de dados: os dados ficam só no navegador de quem usa (localStorage).
-- Permite exportar e importar o arquivo .json, exportar planilha .csv e imprimir ou salvar em PDF.
+- Exporta e importa .json, exporta planilha .csv e gera relatório para impressão ou PDF.
+- `index.html` contém a interface e a lógica; `conteudo.js` contém os textos do método (pilares, réguas, roteiro, 9-box, vieses).
